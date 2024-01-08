@@ -1,0 +1,13 @@
+dicttoxml
+etherscan
+ipython
+jupyter
+jupyterlab
+matplotlib
+numpy
+openpyxl
+pandas
+requests
+scipy
+seaborn
+sec-edgar-api
