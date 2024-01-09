@@ -30,5 +30,7 @@ for concept, concept_data in raw_json['facts']['us-gaap'].items(): #  loop over 
     print(concept)
     for unit, fact_data in concept_data['units'].items():
         for fact in fact_data:
+            if fact['form'] != '10-K':
+                continue
             print(fact)
     print()

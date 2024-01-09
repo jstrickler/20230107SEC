@@ -3,6 +3,9 @@ from sec_edgar_api import EdgarClient
 from edgar_user_agent import EDGAR_USER_AGENT
 
 edgar = EdgarClient(user_agent=EDGAR_USER_AGENT)
+edgar._session.verify=False
+
+print(dir(edgar))
 
 CIK = "320193"  # Apple, Inc.
 

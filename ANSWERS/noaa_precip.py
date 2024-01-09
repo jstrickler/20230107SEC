@@ -14,7 +14,8 @@ response = sess.get(
         'stationid': 'COOP:010957',
         'startdate': '1970-01-01',
         'enddate': '1970-12-31',
-    }
+    },
+    verify=False,
 )
 
 pprint(response.json())

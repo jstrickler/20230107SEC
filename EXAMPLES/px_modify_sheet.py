@@ -9,7 +9,7 @@ def main():
 
     add_age_at_inauguration(ws)
 
-    wb.save('presidents1.xlsx')  # save as ...
+    wb.save('../DATA/presidents.xlsx')  # save as ...
 
 
 def make_date(date_str):

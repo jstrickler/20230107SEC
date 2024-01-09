@@ -12,20 +12,23 @@ GET_HEADERS = {
 CIK = "0001467858"  # General Motors
 
 TAXONOMY = 'us-gaap'
-CONCEPT = "AccountsPayableCurrent"
+TAG = "AccountsPayableCurrent"
 
 # e.g., https://data.sec.gov/api/xbrl/companyconcept/
 #                 CIK##########/us-gaap/AccountsPayableCurrent.json
-url = f"https://data.sec.gov/api/xbrl/companyconcept/CIK{CIK}/{TAXONOMY}/{CONCEPT}.json"
+url = f"https://data.sec.gov/api/xbrl/companyconcept/CIK{CIK}/{TAXONOMY}/{TAG}.json"
 
 response = requests.get(url, headers=GET_HEADERS)
 if response.status_code == requests.codes.OK:
     content_type = response.headers.get('content-type', "")
     if 'json' in content_type.lower():
         data = response.json()
+        units = data['units']['USD']
+        for unit in units:
+            print(unit['filed'], unit['val'])
     else:
         raise Exception("Request returned %s, not JSON", content_type)
 else: 
     raise Exception("Request failed with HTTP code %d", response.status_code)
 
-pprint(data)
+# pprint(data)

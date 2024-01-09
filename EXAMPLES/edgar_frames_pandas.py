@@ -1,4 +1,4 @@
-import io
+from pprint import pprint
 import requests
 import pandas as pd
 import numpy as np
@@ -22,6 +22,8 @@ response = requests.get(url, headers=GET_HEADERS)
 
 raw_data = response.json().get('data')
 
+pprint(raw_data[:5])
+
 df = pd.DataFrame.from_dict(raw_data)
 print(df.head())
 print()
@@ -30,5 +32,5 @@ print()
 print(df.info())
 
 vc = df.value_counts('loc')
-print(vc[vc > 150])  # print locations that occur 150 or more times
+print(vc[vc > 150)  # print locations that occur 150 or more times
 

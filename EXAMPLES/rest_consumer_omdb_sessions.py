@@ -1,22 +1,36 @@
+from argparse import ArgumentParser
+import os
 import requests
 from pprint import pprint
 
-with open('omdbapikey.txt') as api_in:
-    OMDB_API_KEY = api_in.read().rstrip()
+parser = ArgumentParser(description="Movie Fetcher")
+parser.add_argument("--config_folder", dest="config", help="Folder containing config file")
 
 
 OMDB_URL = "http://www.omdbapi.com"
 
 MOVIE_TITLES = [
     'Black Panther',
-    'Frozen',
-    'Top Gun: Maverick',
+    'Freeze',
+    'Top',
+    'gun',
     'Bullet Train',
-    'Death on the Nile',
+    'Nile',
     'Casablanca',
 ]
 
 def main():
+    args = parser.parse_args()
+    if args.config:
+        config_path = args.config
+    else:
+        config_path = "."
+
+    config_file_path = os.path.join(config_path, "omdbapikey.txt")
+    with open(config_file_path) as api_in:
+        OMDB_API_KEY = api_in.read().rstrip()
+
+
     with requests.Session() as session:
         session.params.update({"apikey": OMDB_API_KEY})
         for movie_title in MOVIE_TITLES:

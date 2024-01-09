@@ -57,6 +57,10 @@ class CompanyConcept:
 
 
 if __name__ == "__main__":
+    CIKS = [
+        "320193",  # Apple
+        
+    ]
     CIK = "320193"  # Apple, Inc.
     TAXONOMY = 'us-gaap'
     TAG = "AccountsPayableCurrent"

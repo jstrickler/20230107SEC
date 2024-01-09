@@ -1,5 +1,4 @@
 import requests
-from pprint import pprint
 
 # headers for GET requests
 GET_HEADERS = {
