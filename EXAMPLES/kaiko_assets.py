@@ -8,12 +8,13 @@ headers = {'accept': 'application/json'}
 
 response = requests.get(url, headers=headers)
 
-json_data = response.json()
+if response.status_code == requests.codes.OK:
+    json_data = response.json()
 
-data = json_data.get('data')
+    data = json_data.get('data')
 
-for asset in data[:10]:
-    print(asset)
-    print("-" * 10)
+    for asset in data[:10]:
+        print(asset)
+        print("-" * 10)
 
-print("count:", len(data))
+    print("count:", len(data))

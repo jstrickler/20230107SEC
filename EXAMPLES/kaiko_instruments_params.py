@@ -1,3 +1,4 @@
+from datetime import datetime
 import requests
 
 base_url = 'https://reference-data-api.kaiko.io/'
@@ -5,7 +6,7 @@ base_url = 'https://reference-data-api.kaiko.io/'
 url = base_url + 'v1/instruments'
 
 headers = {'accept': 'application/json'}
-params = {'code': '007btc'}
+params = {'exchange_code': 'bnce'}
 
 response = requests.get(url, headers=headers, params=params)
 
@@ -13,8 +14,10 @@ json_data = response.json()
 
 data = json_data.get('data')
 
-for instrument in data[:10]:
-    print(instrument)
+for instrument in data[-10:]:
+    raw_ts = instrument['trade_start_timestamp']
+    ts = datetime.fromtimestamp(raw_ts / 1000)
+    print(instrument['code'], ts.strftime("%x %X"))
     print("-" * 10)
 
 print("count:", len(data))

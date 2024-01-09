@@ -4,7 +4,7 @@ base_url = 'https://reference-data-api.kaiko.io/'
 
 url = base_url + 'v1/pools'
 
-headers = {'accept': 'application/json'}
+headers = {'accept': 'application/json', 'x-api-key': 'SEC-API-KEY'}
 
 response = requests.get(url, headers=headers)
 
