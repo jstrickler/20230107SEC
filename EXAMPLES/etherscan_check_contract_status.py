@@ -1,3 +1,4 @@
+from pprint import pprint
 import requests
 from etherscan_api_key import ETHERSCAN_API_KEY
 
@@ -19,6 +20,6 @@ response = requests.get(URL, params=params)
 if response.status_code == requests.codes.OK:
     data = response.json()
     results = data['result']
-    print(results)   # isError:  0 == pass, 1 == fail
+    pprint(results)   # isError:  0 == pass, 1 == fail
 
 

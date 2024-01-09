@@ -27,10 +27,12 @@ pprint(raw_data[:5])
 df = pd.DataFrame.from_dict(raw_data)
 print(df.head())
 print()
+print(df.tail())
+print()
 print(df.describe())
 print()
 print(df.info())
 
 vc = df.value_counts('loc')
-print(vc[vc > 150)  # print locations that occur 150 or more times
+print(vc[vc > 150])  # print locations that occur 150 or more times
 

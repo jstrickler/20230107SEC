@@ -1,4 +1,5 @@
 import requests
+from pprint import pprint
 from etherscan_api_key import ETHERSCAN_API_KEY
 
 
@@ -23,5 +24,8 @@ params = {
 response = requests.get(URL, params=params)
 if response.status_code == requests.codes.OK:
     data = response.json()
-    print(data)
+    #pprint(data)
     # data['result'] is list of tx
+    for tx in data['result']:
+        pprint(tx)
+        print('---')

@@ -15,4 +15,4 @@ params = {
 
 response = requests.get(URL, params=params)
 if response.status_code == requests.codes.OK:
-    print(response.json())
+    

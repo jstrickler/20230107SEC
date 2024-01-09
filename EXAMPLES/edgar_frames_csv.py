@@ -29,11 +29,13 @@ frames = facts_data.get('data')
 
 if frames:
     with open('edgar_frames.csv', 'w') as frames_out:
+        print(frames[0])
         headers = frames[0].keys()
         dw = csv.DictWriter(
             frames_out,
             headers, 
-            lineterminator="\n"
+            lineterminator="\n",
+            # delimiter="|",
         )
         dw.writeheader()
         dw.writerows(frames)

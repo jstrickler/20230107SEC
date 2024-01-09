@@ -1,4 +1,3 @@
-import csv
 import requests
 from dicttoxml import dicttoxml
 from edgar_user_agent import EDGAR_USER_AGENT
@@ -38,6 +37,7 @@ if frames:
         attr_type=False,
         include_encoding=False,
         item_func=make_item_name,
+        # item_func=lambda p: "frame",
     )
     with open('edgar_frames.xml', 'wb') as frames_out:
         frames_out.write(xml_doc)
