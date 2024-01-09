@@ -25,8 +25,10 @@ raw_data = response.json().get('data')
 data = np.array(raw_data)
 
 print(f"{type(data) = }")
+print()
 
 print(f"{data[0] = }")
+print()
 
 print(data)
 

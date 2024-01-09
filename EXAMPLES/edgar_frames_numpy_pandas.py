@@ -27,9 +27,9 @@ df = pd.DataFrame.from_dict(raw_data)
 data = df.to_numpy()
 
 print(f"{type(data) = }")
-
+print()
 print(f"{data[0] = }")
-
+print()
 print(data)
 
 

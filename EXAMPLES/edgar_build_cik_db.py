@@ -21,11 +21,11 @@ INSERT_CIK = """
 COMPANY_FACTS_URL = "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip"
 
 
-GET_HEADERS = {
-    "User-Agent": EDGAR_USER_AGENT
-}
+# GET_HEADERS = {
+#     "User-Agent": EDGAR_USER_AGENT
+# }
 
-response = requests.get(COMPANY_FACTS_URL, headers=GET_HEADERS)
+# response = requests.get(COMPANY_FACTS_URL, headers=GET_HEADERS)
 
 facts_zip = "edgar_bulk_co_facts.zip"
 
@@ -33,7 +33,12 @@ if not os.path.exists(facts_zip):
     print("Please run 'edgar_bulk_download.py' before running this script")
     exit(1)
 
-with sqlite3.connect('cik_lookup.db') as cikdb:
+DATABASE_NAME = 'cik_lookup.db'
+
+if os.path.exists(DATABASE_NAME):
+    os.remove(DATABASE_NAME)
+
+with sqlite3.connect(DATABASE_NAME) as cikdb:
     cikdb.execute(CREATE_TABLE)  
 
     with ZipFile(facts_zip) as zip:
@@ -44,4 +49,4 @@ with sqlite3.connect('cik_lookup.db') as cikdb:
                 data = json.loads(raw_data)
                 entity_name = data.get('entityName', 'NONE')
                 cikdb.execute(INSERT_CIK, [cik, entity_name])
-                print(cik, entity_name)
+                # print(cik, entity_name)

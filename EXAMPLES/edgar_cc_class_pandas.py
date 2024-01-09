@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 #from sec_edgar_api import EdgarClient
+import pandas as pd
 import requests
 from edgar_user_agent import EDGAR_USER_AGENT
 
@@ -59,19 +60,23 @@ class CompanyConcept:
 if __name__ == "__main__":
     CIKS = [
         "320193",  # Apple
-        
+        "789019", # Microsoft
+        "320187", # Nike
     ]
-    CIK = "320193"  # Apple, Inc.
     TAXONOMY = 'us-gaap'
     TAG = "AccountsPayableCurrent"
 
-    cc = CompanyConcept(cik=CIK, taxonomy=TAXONOMY, tag=TAG)
-    print(cc)
+    dataframes = []
+    for cik in CIKS:
+        cc = CompanyConcept(cik=cik, taxonomy=TAXONOMY, tag=TAG)
+        df = pd.DataFrame.from_dict(cc.facts)
+        df['cik'] = [cik] * len(cc.facts)
+        dataframes.append(df)
+    
+    bigdf = pd.concat(dataframes, ignore_index=True)
 
-    print(cc.facts[0])
+    print(bigdf.head())
+    print('-' * 60)
+    print(bigdf.tail())
     print()
-    for fact in cc.facts[:10]:
-        print(fact.form, fact.fiscal_year, fact.value)
-        print('-' * 10)
-    print()
-    print(f"There are {len(cc.facts)} facts")
+    print(bigdf.iloc[0])
