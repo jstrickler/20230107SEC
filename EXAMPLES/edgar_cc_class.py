@@ -50,7 +50,8 @@ class CompanyConcept:
             url,
             headers={
                 'user-agent':EDGAR_USER_AGENT,
-            }
+            },
+            verify=False,
         )
         return response.json()
 
@@ -71,3 +72,14 @@ if __name__ == "__main__":
         print('-' * 10)
     print()
     print(f"There are {len(cc.facts)} facts")
+
+
+
+
+
+# jstrickler@gmail.com
+    
+    
+
+
+

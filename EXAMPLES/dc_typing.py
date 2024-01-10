@@ -1,19 +1,19 @@
 import sys
 from dataclasses import dataclass, field
-from typing import List, Dict, Any, Union  # Import needed types from typing
+from typing import List, Optional, Dict, Any, Union  # Import needed types from typing
 from datetime import date
 
 @dataclass
 class PhoneNumber:  # Create dataclass
     number: str  # Class has one member
 
-@dataclass()
+@dataclass
 class AddressBookEntry:
-    title: Union[str, None]  # The title field can be a str or None
+    title: Optional[str]  # The title field can be a str or None
     first_name: str
-    middle_name: Union[str, None]
+    middle_name: Optional[str]
     last_name: str
-    phone_numbers: List[PhoneNumber]  # phone_numbers is a list of PhoneNumber types
+    phone_numbers: list[PhoneNumber]  # phone_numbers is a list of PhoneNumber types
     # note: as of 3.9, list[PhoneNumber] is valid (also dict, tuple, set, frozenset)
     birthday: date
 

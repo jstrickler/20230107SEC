@@ -16,6 +16,7 @@ data = json_data.get('data')
 
 for instrument in data[-10:]:
     raw_ts = instrument['trade_start_timestamp']
+    # KaiKo timestamp is milliseconds since 1/1/1970
     ts = datetime.fromtimestamp(raw_ts / 1000)
     print(instrument['code'], ts.strftime("%x %X"))
     print("-" * 10)

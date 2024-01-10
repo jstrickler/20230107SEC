@@ -13,9 +13,6 @@ class Card:
     rank: str
     suit: str
 
-    def __repr__(self):
-        return f"{self.rank}-{self.suit}"
-
 @dataclass
 class CardDeck:
     """
